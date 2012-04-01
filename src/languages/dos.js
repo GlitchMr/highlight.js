@@ -14,15 +14,15 @@ hljs.LANGUAGES.dos = {
     },
     contains: [
       {
-        className: 'envvar', begin: '%%[^ ]',
+        className: 'envvar', begin: '%%[^\s]',
         relevance: 4
       },
       {
-        className: 'envvar', begin: '%[^ ]+?%',
+        className: 'envvar', begin: '%[^\s]+?%',
         relevance: 4
       },
       {
-        className: 'envvar', begin: '![^ ]+?!',
+        className: 'envvar', begin: '![^\s]+?!',
         relevance: 4
       },
       {
@@ -31,7 +31,7 @@ hljs.LANGUAGES.dos = {
       },
       {
         className: 'comment',
-        begin: '@?rem', end: '$',
+        begin: '^@?rem', end: '$',
         relevance: 5
       }
     ]
