@@ -16,7 +16,8 @@ hljs.LANGUAGES.markdown = {
       },
       {
         className: 'header',
-        begin: '^.+?\\n[=-]{2,}$'
+        begin: '^.+?\\n[=-]{2,}$',
+        relevance: 4
       },
       // inline html
       {
@@ -26,12 +27,14 @@ hljs.LANGUAGES.markdown = {
       // lists (indicators only)
       {
         className: 'bullet',
-        begin: '^([*+-]|(\\d+\\.))\\s+'
+        begin: '^([*+-]|(\\d+\\.))\\s+',
+        relevance: 1
       },
       // strong segments
       {
         className: 'strong',
-        begin: '[*_]{2}.+?[*_]{2}'
+        begin: '[*_]{2}.+?[*_]{2}',
+        relevance: 2
       },
       // emphasis segments
       {
@@ -41,7 +44,8 @@ hljs.LANGUAGES.markdown = {
       // blockquotes
       {
         className: 'blockquote',
-        begin: '^>\\s+', end: '$'
+        begin: '^>\\s+', end: '$',
+        relevance: 4
       },
       // code snippets
       {
@@ -56,7 +60,8 @@ hljs.LANGUAGES.markdown = {
       // horizontal rules
       {
         className: 'horizontal_rule',
-        begin: '^-{3,}', end: '$'
+        begin: '^-{3,}', end: '$',
+        relevance: 3
       },
       // using links - title and link
       {
@@ -65,14 +70,15 @@ hljs.LANGUAGES.markdown = {
         contains: [
           {
             className: 'link_label',
-            begin: '\\[.+\\]'
+            begin: '!?\\[.+\\]'
           },
           {
             className: 'link_url',
             begin: '\\(', end: '\\)',
             excludeBegin: true, excludeEnd: true
           }
-        ]
+        ],
+        relevance: 3
       }
     ]
   }

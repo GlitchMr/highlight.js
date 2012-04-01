@@ -29,11 +29,13 @@ hljs.LANGUAGES.diff = {
       },
       {
         className: 'header',
-        begin: '=====', end: '=====$'
+        begin: '=====', end: '=====$',
+        relevance: 10
       },
       {
         className: 'header',
-        begin: '^\\-\\-\\-', end: '$'
+        begin: '^\\-\\-\\-', end: '$',
+        relevance: 5
       },
       {
         className: 'header',
@@ -41,11 +43,13 @@ hljs.LANGUAGES.diff = {
       },
       {
         className: 'header',
-        begin: '^\\+\\+\\+', end: '$'
+        begin: '^\\+\\+\\+', end: '$',
+        relevance: 5
       },
       {
         className: 'header',
-        begin: '\\*{5}', end: '\\*{5}$'
+        begin: '\\*{5}', end: '\\*{5}$',
+        relevance: 5
       },
       {
         className: 'addition',

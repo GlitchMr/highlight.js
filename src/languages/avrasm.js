@@ -46,7 +46,8 @@ hljs.LANGUAGES.avrasm =
     },
     contains: [
       hljs.C_BLOCK_COMMENT_MODE,
-      {className: 'comment', begin: ';',  end: '$'},
+      {className: 'comment', begin: '^\s+;',  end: '$', relevance: 2},
+      {className: 'comment', begin: ';',  end: '$', relevance: 0.5},
       hljs.C_NUMBER_MODE, // 0x..., decimal, float
       hljs.BINARY_NUMBER_MODE, // 0b...
       {
@@ -57,10 +58,11 @@ hljs.LANGUAGES.avrasm =
       {
         className: 'string',
         begin: '\'', end: '[^\\\\]\'',
-        illegal: '[^\\\\][^\']'
+        illegal: '[^\\\\][^\']',
+        relevance: 0
       },
-      {className: 'label',  begin: '^[A-Za-z0-9_.$]+:'},
-      {className: 'preprocessor', begin: '#', end: '$'},
+      {className: 'label',  begin: '^[A-Za-z0-9_.$]+:', relevance: 0},
+      {className: 'preprocessor', begin: '#', end: '$', relevance: 0},
       {  // директивы «.include» «.macro» и т.д.
         className: 'preprocessor',
         begin: '\\.[a-zA-Z]+'
