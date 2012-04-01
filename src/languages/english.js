@@ -38,7 +38,8 @@ hljs.LANGUAGES.english = {
       },
       // Perl POD
       {
-        begin: '^=[^]*(?!.)',
+        begin: '^=',
+        end: '(?![\\s\\S])', // Because why not?
         relevance: 0
       },
       {
