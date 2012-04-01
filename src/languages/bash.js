@@ -33,7 +33,7 @@ hljs.LANGUAGES.bash = function(){
     keywords: {
       'literal': BASH_LITERAL
     },
-    relevance: 0
+    relevance: 4
   };
 
   return {

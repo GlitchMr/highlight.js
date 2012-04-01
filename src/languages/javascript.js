@@ -27,7 +27,8 @@ hljs.LANGUAGES.javascript = {
           {
             className: 'regexp',
             begin: '/', end: '/[gim]*',
-            contains: [{begin: '\\\\/'}]
+            contains: [{begin: '\\\\/'}],
+            relevance: 4
           }
         ],
         relevance: 0
@@ -36,6 +37,7 @@ hljs.LANGUAGES.javascript = {
         className: 'function',
         begin: '\\bfunction\\b', end: '{',
         keywords: {'function': 1},
+        relevance: 4,
         contains: [
           {
             className: 'title', begin: '[A-Za-z$_][0-9A-Za-z$_]*'

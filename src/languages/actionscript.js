@@ -28,9 +28,11 @@ hljs.LANGUAGES.actionscript = function() {
         },
         'literal': {'true': 1, 'false': 1, 'null': 1, 'undefined': 1},
         'reserved': {
-          'abstract': 0, 'boolean': 0, 'byte': 0, 'cast': 0, 'char': 0, 'debugger': 0, 'double': 0, 'enum': 0,
-          'export': 0, 'float': 0, 'goto': 0, 'intrinsic': 0, 'long': 0, 'prototype': 0, 'short': 0,
-          'synchronized': 0, 'throws': 0, 'to': 0, 'transient': 0, 'type': 0, 'virtual': 0, 'volatile': 0
+          // Negative points make it less similar to Java (which sadly commonly gets similar if
+          // code doesn't use JavaDocs or those funny "@" words...)
+          'abstract': -5, 'boolean': -5, 'byte': -5, 'cast': -5, 'char': -5, 'debugger': -5, 'double': -5, 'enum': -5,
+          'export': -5, 'float': -5, 'goto': -5, 'intrinsic': -5, 'long': -5, 'prototype': -5, 'short': -5,
+          'synchronized': -5, 'throws': -5, 'to': -5, 'transient': -5, 'type': -5, 'virtual': -5, 'volatile': -5
         }
       },
       contains: [
@@ -41,7 +43,7 @@ hljs.LANGUAGES.actionscript = function() {
         hljs.C_NUMBER_MODE,
         {
           className: 'package',
-          begin: 'package ?', end: '{',
+          begin: 'package\s*', end: '{',
           keywords: {'package': 1},
           contains: [TITLE_MODE]
         },
@@ -86,7 +88,8 @@ hljs.LANGUAGES.actionscript = function() {
               end: IDENT_FUNC_RETURN_TYPE_RE,
               relevance: 10
             }
-          ]
+          ],
+          relevance: 0
         }
       ]
     }

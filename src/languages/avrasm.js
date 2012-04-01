@@ -65,7 +65,8 @@ hljs.LANGUAGES.avrasm =
       {className: 'preprocessor', begin: '#', end: '$', relevance: 0},
       {  // директивы «.include» «.macro» и т.д.
         className: 'preprocessor',
-        begin: '\\.[a-zA-Z]+'
+        begin: '\\.[a-zA-Z]+',
+        relevance: 3
       },
       {  // подстановка в «.macro»
         className: 'localvars',

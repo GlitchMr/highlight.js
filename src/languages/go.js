@@ -8,13 +8,13 @@ hljs.LANGUAGES.go = function(){
   var GO_KEYWORDS = {
     'keyword': {
        'break' : 1, 'default' : 1, 'func' : 1, 'interface' : 1, 'select' : 1,
-       'case' : 1, 'map' : 1, 'struct' : 1, 'chan' : 1,
-       'else' : 1, 'goto' : 1, 'package' : 1, 'switch' : 1, 'const' : 1,
+       'case' : 1, 'map' : 1, 'struct' : 1, 'chan' : 4,
+       'else' : 1, 'goto' : 1, 'package' : 4, 'switch' : 1, 'const' : 1,
        'fallthrough' : 1, 'if' : 1, 'range' : 1, 'type' : 1, 'continue' : 1,
-       'for' : 1, 'import' : 1, 'return' : 1, 'var' : 1, 'go': 1, 'defer' : 1
+       'for' : 1, 'import' : 1, 'return' : 1, 'var' : 1, 'go': 1, 'defer' : 3
     },
     'constant': {
-       'true': 1, 'false': 1, 'iota': 1, 'nil': 1
+       'true': 1, 'false': 1, 'iota': 4, 'nil': 1
     },
     'typename': {
        'bool': 1, 'byte': 1, 'complex64': 1, 'complex128': 1, 'float32': 1,
@@ -24,7 +24,7 @@ hljs.LANGUAGES.go = function(){
    },
     'built_in': {
        'append': 1, 'cap': 1, 'close': 1, 'complex': 1, 'copy': 1, 'imag': 1,
-       'len': 1, 'make': 1, 'new': 1, 'panic': 1, 'print': 1, 'println': 1,
+       'len': 1, 'make': 2, 'new': 1, 'panic': 1, 'print': 1, 'println': 1,
        'real': 1, 'recover': 1
     }
   };

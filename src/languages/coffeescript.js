@@ -26,9 +26,9 @@ hljs.LANGUAGES.coffeescript = function() {
       'yes': 1, 'no': 1, 'on': 1, 'off': 1
     },
     'reserved': {
-      'case': 1, 'default': 1, 'function': 1, 'var': 1, 'void': 1, 'with': 1,
-      'const': 1, 'let': 1, 'enum': 1, 'export': 1, 'import': 1, 'native': 1,
-      '__hasProp': 1 , '__extends': 1 , '__slice': 1 , '__bind': 1 , '__indexOf': 1
+      'case': 0, 'default': 0, 'function': 0, 'var': 0, 'void': 0, 'with': 0,
+      'const': 0, 'let': 0, 'enum': 0, 'export': 0, 'import': 0, 'native': 0,
+      '__hasProp': 0 , '__extends': 0 , '__slice': 0 , '__bind': 0 , '__indexOf': 0
     }
   };
 
@@ -51,12 +51,14 @@ hljs.LANGUAGES.coffeescript = function() {
   var COFFEE_HEREDOC_MODE = {
     className: 'string',
     begin: '"""', end: '"""',
+    relevance: 4,
     contains: [hljs.BACKSLASH_ESCAPE, COFFEE_QUOTE_STRING_SUBST_MODE]
   };
 
   var COFFEE_HERECOMMENT_MODE = {
     className: 'comment',
-    begin: '###', end: '###'
+    begin: '###', end: '###',
+    relevance: 4
   };
 
   var COFFEE_HEREGEX_MODE = {
@@ -67,8 +69,9 @@ hljs.LANGUAGES.coffeescript = function() {
 
   var COFFEE_FUNCTION_DECLARATION_MODE = {
     className: 'function',
-    begin: JS_IDENT_RE + '\\s*=\\s*(\\(.+\\))?\\s*[-=]>',
+    begin: JS_IDENT_RE + '\\s*=\\s*(?:\\(.+\\))?\\s*[-=]>',
     returnBegin: true,
+    relevance: 4,
     contains: [
       {
         className: 'title',

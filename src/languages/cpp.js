@@ -9,7 +9,7 @@ hljs.LANGUAGES.cpp = function(){
       'catch': 1, 'export': 1, 'virtual': 1, 'operator': 2, 'sizeof': 2,
       'dynamic_cast': 2, 'typedef': 2, 'const_cast': 2, 'const': 1,
       'struct': 1, 'for': 1, 'static_cast': 2, 'union': 1, 'namespace': 1,
-      'unsigned': 1, 'long': 1, 'throw': 1, 'volatile': 2, 'static': 1,
+      'unsigned': 3, 'long': 1, 'throw': 1, 'volatile': 2, 'static': 1,
       'protected': 1, 'bool': 1, 'template': 1, 'mutable': 1, 'if': 1,
       'public': 1, 'friend': 2, 'do': 1, 'return': 1, 'goto': 1, 'auto': 1,
       'void': 2, 'enum': 1, 'else': 1, 'break': 1, 'new': 1, 'extern': 1,
@@ -40,13 +40,14 @@ hljs.LANGUAGES.cpp = function(){
         hljs.QUOTE_STRING_MODE,
         {
           className: 'string',
-          begin: '\'', end: '[^\\\\]\'',
+          begin: '\'', end: '[^]\'',
           illegal: '[^\\\\][^\']'
         },
         hljs.C_NUMBER_MODE,
         {
           className: 'preprocessor',
-          begin: '#', end: '$'
+          begin: '#', end: '$',
+          relevance: 2
         },
         {
           className: 'stl_container',
