@@ -13,7 +13,7 @@ hljs.LANGUAGES.lisp = function(){
   };
   var NUMBERS = [
     {
-      className: 'number', begin: LISP_SIMPLE_NUMBER_RE
+      className: 'number', begin: LISP_SIMPLE_NUMBER_RE, relevance: 0
     },
     {
       className: 'number', begin: '#b[0-1]+(/[0-1]+)?'
@@ -31,8 +31,7 @@ hljs.LANGUAGES.lisp = function(){
   var STRING = {
     className: 'string',
     begin: '"', end: '"',
-    contains: [hljs.BACKSLASH_ESCAPE],
-    relevance: 0
+    contains: [hljs.BACKSLASH_ESCAPE]
   };
   var COMMENT = {
     className: 'comment',
@@ -63,7 +62,8 @@ hljs.LANGUAGES.lisp = function(){
   };
   var LIST = {
     className: 'list',
-    begin: '\\(', end: '\\)'
+    begin: '\\(', end: '\\)',
+    relevance: 0
   };
   var BODY = {
     className: 'body',

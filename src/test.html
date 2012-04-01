@@ -194,7 +194,6 @@ class SomeClass:<br>    pass
        153900    1.296  rrule.py:399(_iter)
 304393/151570    0.963  rrule.py:102(_iter_cached)
 </code></pre>
-
   <tr>
     <th>Ruby
     <td class="ruby">
@@ -223,37 +222,62 @@ Constant = 1
   <tr>
     <th>Perl
     <td class="perl">
-<pre><code># loads object
-sub load
-{
-  my $flds = $c-&gt;db_load($id,@_) || do {
-    Carp::carp "Can`t load (class: $c, id: $id): '$!'"; return undef
-  };
-  my $o = $c-&gt;_perl_new();
-  $id12 = $id / 24 / 3600;
-  $o-&gt;{'ID'} = $id12 + 123;
-  $o-&gt;{'PAPA'} = $flds-&gt;{'PAPA'};
-  #$o-&gt;{'SHCUT'} = $flds-&gt;{'SHCUT'};
-  my $p = $o-&gt;props;
-  my $vt;
-  $string =~ m/^sought_text$/;
-  for my $key (keys %$p)
-  {
-    if(${$vt.'::property'}) {
-      $o-&gt;{$key . '_real'} = $flds-&gt;{$key};
-      tie $o-&gt;{$key}, 'CMSBuilder::Property', $o, $key;
-    } else {
-      $o-&gt;{$key} = $flds-&gt;{$key};
-      $o->kill();
-    }
-  }
-  $o-&gt;save if delete $o-&gt;{'_save_after_load'};
-  return $o;
+<pre><code>package ACME::Square;
+use strict;
+use warnings;
+use Carp;
+use Exporter;
+use base 'Exporter';
+our $VERSION = 20120328;
+our @EXPORT_OK = qw( square );
+sub square ($) {
+    my ($a) = @_;
+    return $a * $a;
 }
 
-foreach my $num (0..$#array) {
-  # something
-}
+1 or croak 'Failed to give positive value.';
+
+__END__ or croak 'Failed to run __END__ before documentation.';
+
+=head1 NAME
+
+ACME::Square - A module for your squaring needs.
+
+=head1 SYNOPSIS
+
+    use ACME::Square qw(square);
+    print square(3); # 9
+
+=head1 DESCRIPTION
+
+This is procedural module which squares first argument. It even can square
+float numbers, unlike simple implementation in C++ which usually would use
+C&lt;char> for storing data.
+
+=head2 Functions
+
+This module can give following functions on request.
+
+=head3 square
+
+    print square(3);
+
+Prints square of the given number. Note that this module inserts alias of
+C&lt;$value ** 2> to your code to help you squaring numbers. This doesn't use
+filters, so it should be safe.
+
+=head1 LICENSE
+
+This module is in Public Domain. Seriously, I don't care about this piece of
+garbage.
+
+=head1 BUGS
+
+If you will give this function string, you will get warning. This will be
+fixed in next release.
+
+=cut
+
 </code></pre>
 
   <tr>

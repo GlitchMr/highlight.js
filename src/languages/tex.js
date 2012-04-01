@@ -8,7 +8,7 @@ hljs.LANGUAGES.tex = function() {
   var COMMAND1 = {
     className: 'command',
     begin: '\\\\[a-zA-Zа-яА-я]+[\\*]?',
-    relevance: 10
+    relevance: 5
   };
   var COMMAND2 = {
     className: 'command',
