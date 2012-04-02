@@ -60,7 +60,7 @@ hljs.LANGUAGES.php = {
       },
       {
         className: 'string',
-        begin: 'b\'', end: '\'',
+        begin: 'b?\'', end: '\'',
         contains: [hljs.BACKSLASH_ESCAPE]
       },
       {
