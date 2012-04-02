@@ -42,8 +42,17 @@ hljs.LANGUAGES.php = {
       },
       hljs.C_NUMBER_MODE, // 0x..., 0..., decimal, float
       hljs.BINARY_NUMBER_MODE, // 0b...
-      hljs.inherit(hljs.APOS_STRING_MODE, {illegal: null}),
-      hljs.inherit(hljs.QUOTE_STRING_MODE, {illegal: null}),
+      {
+        className: 'string',
+        begin: '"', end: '"',
+        contains: [hljs.BACKSLASH_ESCAPE],
+        relevance: 0
+      },
+      {
+        className: 'string',
+        begin: '`', end: '`',
+        contains: [hljs.BACKSLASH_ESCAPE]
+      },
       {
         className: 'string',
         begin: 'b"', end: '"',
