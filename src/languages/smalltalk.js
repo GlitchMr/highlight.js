@@ -49,7 +49,9 @@ hljs.LANGUAGES.smalltalk = function() {
             SYMBOL
           ]
         }
-      ]
+      ],
+      // I don't know Smalltalk, but I hope that Smalltalk doesn't allow such comments...
+      illegal: '/[/*]'
     }
   };
 }();

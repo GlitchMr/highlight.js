@@ -25,23 +25,9 @@ hljs.LANGUAGES.english = {
         these: 1, give: 1, day: 1, most: 1, us: 1
       }
     },
+    illegal: '/[/*]|</|#\\D|&&|\\|\\||\\+\\+|[{}]',
     contains: [
-      {
-        begin: '//|#',
-        end: '$',
-        relevance: 0
-      },
-      {
-        begin: '/\\*',
-        end: '\\*/',
-        relevance: 0
-      },
-      // Perl POD
-      {
-        begin: '^=',
-        end: '(?![\\s\\S])', // Because why not?
-        relevance: 0
-      },
+      // Quotes may happen in real language
       {
         begin: '"',
         illegal: '\\n',

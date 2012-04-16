@@ -24,6 +24,10 @@ hljs.LANGUAGES.php = {
       'declare': 1, 'unset': 5, 'true': 1, 'false': 1, 'namespace': 1, 'trait':1,
       'goto':1, 'instanceof':1, '__DIR__':1, '__NAMESPACE__':1, '__halt_compiler':10
     },
+    // Hopefully this will somewhat decrease account of false detections of PHP
+    // when JavaScript should be detected (those two languages share too much
+    // similar syntax causing random guesses sometimes).
+    illegal: '[(=]\\s*[/{]',
     contains: [
       hljs.C_LINE_COMMENT_MODE,
       hljs.HASH_COMMENT_MODE,

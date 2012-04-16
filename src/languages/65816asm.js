@@ -27,7 +27,12 @@ hljs.LANGUAGES['65816asm'] = {
             org: 1, pad: 1, padbyte: 1, pc: 1, print: 1, prot: 1, pullpc: 1,
             pushpc: 1, reset: 1, skip: 1, warnpc: 1
         },
+        illegal: '/[/*]|0[box]|</|\\$[G-Zg-z]',
         contains: [
+            {
+                className: 'keyword',
+                begin: '.[A-Z]\b'
+            },
             {
                 className: 'number',
                 begin: '(?:#?(%[01]+|\\$[0-9a-fA-F]+)|#[$%]?|[$%])(?!\\w)'
@@ -48,7 +53,12 @@ hljs.LANGUAGES['65816asm'] = {
             },
             {
                 className: 'label',
-                begin: '[.!]\\w+|\\w+:'
+                begin: '\\.\\w+|\\w+:',
+                relevance: 0
+            },
+            {
+                className: 'variable',
+                begin: '!\\w+'
             },
             {
                 className: 'variable',
