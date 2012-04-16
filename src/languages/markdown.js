@@ -39,7 +39,12 @@ hljs.LANGUAGES.markdown = {
       // emphasis segments
       {
         className: 'emphasis',
-        begin: '[*_].+?[*_]'
+        begin: '\\*.+?\\*'
+      },
+      {
+        className: 'emphasis',
+        begin: '_.+?_',
+        relevance: 0
       },
       // blockquotes
       {

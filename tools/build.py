@@ -20,6 +20,7 @@ REPLACES = {
     'modes': 'm',
     'className': 'cN',
     'begin': 'b',
+    'beginWithKeyword': 'bWK',
     'end': 'e',
     'endsWithParent': 'eW',
     'illegal': 'i',
@@ -51,7 +52,6 @@ LIBRARY_REPLACES = {
     'endRe': 'eR',
     'illegalRe': 'iR',
     'lexemsRe': 'lR',
-    'sub_modes': 'sm',
     'terminators': 't',
 }
 
@@ -60,7 +60,7 @@ CATEGORIES = {
 }
 
 def compress_content(tools_path, content):
-    cmd = 'java -jar %s --type js' % os.path.join(tools_path, 'yuicompressor.jar')
+    args = ['java', '-jar', os.path.join(tools_path, 'yuicompressor.jar'), '--type', 'js']
 
     def replace(content, s, r):
         return re.sub(r'(?<=[^\w"\'|])%s(?=[^\w"\'|])' % s, r, content)
@@ -71,7 +71,7 @@ def compress_content(tools_path, content):
         content = re.sub(r'(block|parentNode)\.cN', r'\1.className', content)
         for s, r in LIBRARY_REPLACES.items():
             content = replace(content, s, r)
-    p = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     p.stdin.write(content)
     p.stdin.close()
     content = p.stdout.read()
