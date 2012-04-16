@@ -17,7 +17,7 @@ hljs.LANGUAGES.markdown = {
       {
         className: 'header',
         begin: '^.+?\\n[=-]{2,}$',
-        relevance: 4
+        relevance: 5
       },
       // inline html
       {
@@ -28,7 +28,7 @@ hljs.LANGUAGES.markdown = {
       {
         className: 'bullet',
         begin: '^([*+-]|(\\d+\\.))\\s+',
-        relevance: 1
+        relevance: 3
       },
       // strong segments
       {
@@ -83,7 +83,7 @@ hljs.LANGUAGES.markdown = {
             excludeBegin: true, excludeEnd: true
           }
         ],
-        relevance: 3
+        relevance: 5
       }
     ]
   }
