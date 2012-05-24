@@ -7,29 +7,19 @@ Description: CoffeeScript is a programming language that transcompiles to JavaSc
 
 hljs.LANGUAGES.coffeescript = function() {
   var keywords = {
-    'keyword': {
+    keyword:
       // JS keywords
-      'in': 1, 'if': 1, 'for': 1, 'while': 1, 'finally': 1,
-      'new': 1, 'do': 1, 'return': 1, 'else': 1,
-      'break': 1, 'catch': 1, 'instanceof': 1, 'throw': 1,
-      'try': 1, 'this': 1, 'switch': 1, 'continue': 1, 'typeof': 1,
-      'delete': 1, 'debugger': 1,
-      'class': 1, 'extends': 1, 'super': 1,
+      'in if for while finally new do return else break catch instanceof throw try this ' +
+      'switch continue typeof delete debugger class extends super' +
       // Coffee keywords
-      'then': 1, 'unless': 1, 'until': 1, 'loop': 2, 'of': 2, 'by': 1, 'when': 2,
-      'and': 1, 'or': 1, 'is': 1, 'isnt': 2, 'not': 1
-    },
-    'literal': {
+      'then unless until loop of by when and or is isnt not',
+    literal:
       // JS literals
-      'true': 1, 'false': 1, 'null': 1, 'undefined': 1,
+      'true false null undefined ' +
       // Coffee literals
-      'yes': 1, 'no': 1, 'on': 1, 'off': 1
-    },
-    'reserved': {
-      'case': 0, 'default': 0, 'function': 0, 'var': 0, 'void': 0, 'with': 0,
-      'const': 0, 'let': 0, 'enum': 0, 'export': 0, 'import': 0, 'native': 0,
-      '__hasProp': 0 , '__extends': 0 , '__slice': 0 , '__bind': 0 , '__indexOf': 0
-    }
+      'yes no on off ',
+    reserved: 'case default function var void with const let enum export import native ' +
+      '__hasProp __extends __slice __bind __indexOf'
   };
 
   var JS_IDENT_RE = '[A-Za-z$_][0-9A-Za-z$_]*';
@@ -85,7 +75,6 @@ hljs.LANGUAGES.coffeescript = function() {
   };
 
   var COFFEE_EMBEDDED_JAVASCRIPT = {
-    className: 'javascript',
     begin: '`', end: '`',
     excludeBegin: true, excludeEnd: true,
     subLanguage: 'javascript'
@@ -95,7 +84,7 @@ hljs.LANGUAGES.coffeescript = function() {
     defaultMode: {
       keywords: keywords,
       contains: [
-        // Numbers 
+        // Numbers
         hljs.C_NUMBER_MODE,
         hljs.BINARY_NUMBER_MODE,
         // Strings

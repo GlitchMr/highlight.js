@@ -5,10 +5,10 @@ pre-packed modules.
 '''
 
 import os
-import sys
 import re
 import optparse
 import subprocess
+from functools import partial
 
 REPLACES = {
     'defaultMode': 'dM',
@@ -17,7 +17,6 @@ REPLACES = {
     'contains': 'c',
     'keywords': 'k',
     'subLanguage': 'sL',
-    'modes': 'm',
     'className': 'cN',
     'begin': 'b',
     'beginWithKeyword': 'bWK',
@@ -28,8 +27,8 @@ REPLACES = {
     'excludeEnd': 'eE',
     'returnBegin': 'rB',
     'returnEnd': 'rE',
-    'noMarkup': 'nM',
     'relevance': 'r',
+
     'IDENT_RE': 'IR',
     'UNDERSCORE_IDENT_RE': 'UIR',
     'NUMBER_RE': 'NR',
@@ -45,9 +44,7 @@ REPLACES = {
     'C_NUMBER_MODE': 'CNM',
     'BINARY_NUMBER_MODE': 'BNM',
     'NUMBER_MODE': 'NM',
-}
 
-LIBRARY_REPLACES = {
     'beginRe': 'bR',
     'endRe': 'eR',
     'illegalRe': 'iR',
@@ -56,26 +53,46 @@ LIBRARY_REPLACES = {
 }
 
 CATEGORIES = {
-    'common': ['bash', 'java', 'ini', 'sql', 'diff', 'php', 'cs', 'cpp', 'ruby', 'python', 'css', 'perl', 'xml', 'javascript'],
+    'common': ['bash', 'java', 'ini', 'sql', 'diff', 'php', 'cs', 'cpp', 'ruby', 'python', 'css', 'perl', 'xml', 'javascript', 'http', 'json'],
 }
 
+def mapnonstrings(source, func):
+    result = []
+    pos = 0
+    quotes = re.compile('[\'"]')
+    while pos < len(source):
+        match = quotes.search(source, pos)
+        end = match.start() if match else len(source)
+        result.append(func(source[pos:end]))
+        pos = end
+        if match:
+            terminator = re.compile(r'[%s\\]' % match.group(0))
+            start = pos
+            pos += 1
+            while True:
+                match = terminator.search(source, pos)
+                if not match:
+                    raise ValueError('Unmatched quote')
+                if match.group(0) == '\\':
+                    pos = match.start() + 2
+                else:
+                    pos = match.start() + 1
+                    result.append(source[start:pos])
+                    break
+    return ''.join(result)
+
 def compress_content(tools_path, content):
-    args = ['java', '-jar', os.path.join(tools_path, 'yuicompressor.jar'), '--type', 'js']
-
-    def replace(content, s, r):
-        return re.sub(r'(?<=[^\w"\'|])%s(?=[^\w"\'|])' % s, r, content)
-
     for s, r in REPLACES.items():
-        content = replace(content, s, r)
-    if not parse_header(content): # this is the highlight.js file, not a language file
-        content = re.sub(r'(block|parentNode)\.cN', r'\1.className', content)
-        for s, r in LIBRARY_REPLACES.items():
-            content = replace(content, s, r)
+        content = mapnonstrings(content, partial(re.sub, r'\b%s\b' % s, r))
+    content = re.sub(r'(block|parentNode)\.cN', r'\1.className', content)
+
+    args = ['java', '-jar', os.path.join(tools_path, 'yuicompressor.jar'), '--type', 'js']
     p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     p.stdin.write(content)
     p.stdin.close()
     content = p.stdout.read()
     p.stdout.close()
+
     return content
 
 def parse_header(content):
@@ -134,16 +151,17 @@ def language_filenames(src_path, languages):
 def build(root, compress, languages):
     src_path = os.path.join(root, 'src')
     tools_path = os.path.join(root, 'tools')
-    files = [os.path.join(src_path, 'highlight.js')] + \
-            language_filenames(src_path, languages)
-    f = open(os.path.join(src_path, 'highlight.pack.js'), 'w')
-    for file in files:
-        print file
-        content = open(file).read()
-        if compress:
-            content = compress_content(tools_path, content)
-        f.write(content)
-    f.close()
+    filenames = language_filenames(src_path, languages)
+    print 'Building %d files:\n%s' % (len(filenames), '\n'.join(filenames))
+    content = open(os.path.join(src_path, 'highlight.js')).read() + \
+              ''.join(open(f).read() for f in filenames)
+    print 'Uncompressed size:', len(content)
+    if compress:
+        print 'Compressing...'
+        content = compress_content(tools_path, content)
+        print 'Compressed size:', len(content)
+    open(os.path.join(src_path, 'highlight.pack.js'), 'w').write(content)
+    print 'Done.'
 
 if __name__ == '__main__':
     parser = optparse.OptionParser()

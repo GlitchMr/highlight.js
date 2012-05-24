@@ -9,7 +9,6 @@ pre code
   background: #222;
 }
 
-pre .header,
 pre .profile .header *,
 pre .ini .title
 {
@@ -38,8 +37,8 @@ pre .symbol,
 pre .diff .change,
 pre .regexp,
 pre .xml .attribute,
-pre .xml .value,
 pre .smalltalk .char,
+pre .xml .value,
 pre .ini .value
 {
   color: #ffcc33;
@@ -53,7 +52,7 @@ pre .addition
 
 pre .built_in,
 pre .literal,
-pre .vhdl .type,
+pre .vhdl .typename,
 pre .go .constant,
 pre .go .typename,
 pre .ini .keyword,
@@ -82,7 +81,9 @@ pre .css .pseudo,
 pre .css .attr_selector,
 pre .lisp .title,
 pre .winutils,
-pre .tex .command
+pre .tex .command,
+pre .request,
+pre .status
 {
   color: #6644aa;
 }
