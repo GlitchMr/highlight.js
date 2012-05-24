@@ -222,8 +222,7 @@ hljs.LANGUAGES.mel = {
       },
       {
         className: 'variable',
-        begin: '\\$\\d',
-        relevance: 5
+        begin: '\\$\\d'
       },
       {
         className: 'variable',

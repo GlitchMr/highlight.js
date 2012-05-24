@@ -406,22 +406,22 @@ func main() {
 &lt;/body&gt;
 </code></pre>
 
-	<tr>
-		<th>Markdown
-		<td class="markdown">
+    <tr>
+        <th>Markdown
+        <td class="markdown">
 <pre>
 <code>FNAQ (Frequently NOT Asked Questions)
 =====================================
 
 * Why this FAQ is called FNAQ?
-  
+
   Well, it's not really FAQ in that _nobody_ asked me questions (for now),
   perhaps it will change in the future. But you may be still interested in
   those questions, so I've written some randomness to make you happy. I guess
   so at least...
-  
+
 * Wait, is that FNAQ a paste?
-  
+
   Yes, technically it is a paste. It's totally normal paste, the only
   difference is arbitary name for it, `/fnaq`. But otherwise, it's normal
   paste, and if you would paste it, it would look identically.
@@ -443,7 +443,7 @@ func main() {
 
   Sure. As long it wouldn't be distracting, I guess it would be possible to
   implement it. Just contact me.
-  
+
 * What is your e-mail address?
 
   &lt;glitchmr@myopera.com>. Yeah, as you can see, I don't care about spam bots.
@@ -793,7 +793,7 @@ int main(int argc, char *argv[]) {
 @end
 
 @interface Test : NSObject &lt;HelloDelegate, WorldDataSource&gt; {
-	NSString *_greeting;
+    NSString *_greeting;
 }
 
 @property (nonatomic, readonly) NSString *greeting;
@@ -805,23 +805,23 @@ int main(int argc, char *argv[]) {
 @synthesize test=_test;
 
 + (id) test {
-	return [self testWithGreeting:@"Hello, world!\nFoo bar!"];
+    return [self testWithGreeting:@"Hello, world!\nFoo bar!"];
 }
 
 + (id) testWithGreeting:(NSString*)greeting {
-	return [[[self alloc] initWithGreeting:greeting] autorelease];
+    return [[[self alloc] initWithGreeting:greeting] autorelease];
 }
 
 - (id) initWithGreeting:(NSString*)greeting {
-	if ( (self = [super init]) ) {
-		_greeting = [greeting retain];
-	}
-	return self;
+    if ( (self = [super init]) ) {
+        _greeting = [greeting retain];
+    }
+    return self;
 }
 
 - (void) dealloc {
-	[_greeting release];
-	[super dealloc];
+    [_greeting release];
+    [super dealloc];
 }
 
 @end
@@ -843,12 +843,12 @@ namespace Test {
 
 /* defining a class */
 class Track : GLib.Object {              /* subclassing 'GLib.Object' */
-	public double mass;                  /* a public field */
-	public double name { get; set; }     /* a public property */
-	private bool terminated = false;     /* a private field */
-	public void terminate() {            /* a public method */
-	  terminated = true;
-	}
+    public double mass;                  /* a public field */
+    public double name { get; set; }     /* a public property */
+    private bool terminated = false;     /* a private field */
+    public void terminate() {            /* a public method */
+      terminated = true;
+    }
 }
 
 const ALL_UPPER_CASE = "you should follow this convention";
@@ -954,10 +954,10 @@ void main() pure nothrow @safe {
     <th>RenderMan RSL
     <td class="rsl">
 <pre><code>#define TEST_DEFINE 3.14
-/*	plastic surface shader
+/*    plastic surface shader
  *
- * 	Pixie is:
- * 	(c) Copyright 1999-2003 Okan Arikan. All rights reserved.
+ *     Pixie is:
+ *     (c) Copyright 1999-2003 Okan Arikan. All rights reserved.
  */
 
 surface plastic (float Ka = 1, Kd = 0.5, Ks = 0.5, roughness = 0.1;
@@ -1408,52 +1408,6 @@ flash2ram:
 </code></pre>
 
   <tr>
-    <th>VHDL
-    <td class="vhdl">
-<pre><code>/*
- * RS-trigger with assynch. reset
- */
-
-library ieee;
-use ieee.std_logic_1164.all;
-
-entity RS_trigger is
-    generic (T: Time := 0ns);
-    port ( R, S  : in  std_logic;
-           Q, nQ : out std_logic;
-           reset, clock : in  std_logic );
-end RS_trigger;
-
-architecture behaviour of RS_trigger is
-    signal QT: std_logic; -- Q(t)
-begin
-    process(clock, reset) is
-        subtype RS is std_logic_vector (1 downto 0);
-    begin
-        if reset = '0' then
-            QT &lt;= '0';
-        else
-            if rising_edge(C) then
-                if not (R'stable(T) and S'stable(T)) then
-                    QT &lt;= 'X';
-                else
-                    case RS'(R&amp;S) is
-                        when "01" =&gt; QT &lt;= '1';
-                        when "10" =&gt; QT &lt;= '0';
-                        when "11" =&gt; QT &lt;= 'X';
-                        when others =&gt; null;
-                    end case;
-                end if;
-            end if;
-        end if;
-    end process;
-
-    Q  &lt;= QT;
-    nQ &lt;= not QT;
-end architecture behaviour;
-</code></pre>
-
-  <tr>
     <th>Parser 3
     <td class="parser3">
 <pre><code>@CLASS
@@ -1572,9 +1526,9 @@ pingUDPPort s a = sendTo s (Strict.singleton 0) a >> return ()
 
 %% state
 -record(state, {
-	  cm,
-	  channel
-	 }).
+      cm,
+      channel
+     }).
 
 test(Foo)->Foo.
 
@@ -1712,26 +1666,9 @@ enum list&lt;T> {
 let a: list&lt;int> = cons(7, @cons(13, @nil));
 </code></pre>
 
-	<tr>
-		<th>English
-		<td class="english">
-<pre>
-<code>Highlight.js highlights syntax in code examples on blogs, forums and in fact
-on any web pages. It's very easy to use because it works automatically: finds
-blocks of code, detects a language, highlights it.
-
-This is not only convenient but also allows highlighting for code examples
-marked up with writing syntaxes like Markdown where there is no way to
-specify HTML class easily.
-
-The library knows 41 languages and is bundled with 16 style themes.
-
-Developers and designers are welcome to take part in development.
-</code></pre>
-
-	<tr>
-		<th>65816 ASM
-		<td class="65816asm">
+    <tr>
+        <th>65816 ASM
+        <td class="65816asm">
 <pre>
 <code>; I like ASM!
 macro store(addr)
@@ -1929,7 +1866,7 @@ foo %union% bar
     <th>Replacing TAB with 4 spaces
     <td>
 <pre><code class="python">for x in [1, 2, 3]:
-	count(x)
+    count(x)
 </code></pre>
 
   <tr>
@@ -1944,9 +1881,9 @@ foo %union% bar
     <th>Custom markup + TAB replacement
     <td>
 <pre><code class="python">for x in [1, 2, 3]:
-<span style="background:yellow">	</span>count(x)
-	if x == 3:
-	<span style="background:yellow">	</span>count(x + 1)
+<span style="background:yellow">    </span>count(x)
+    if x == 3:
+    <span style="background:yellow">    </span>count(x + 1)
 </code></pre>
 
   <tr>
