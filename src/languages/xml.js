@@ -41,8 +41,7 @@ hljs.LANGUAGES.xml = function(){
       contains: [
         {
           className: 'pi',
-          begin: '<\\?', end: '\\?>',
-          relevance: 10
+          begin: '<\\?', end: '\\?>'
         },
         {
           className: 'doctype',
